@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "937491341183",
+    "project_id": "rentbike-79e86",
+    "storage_bucket": "rentbike-79e86.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937491341183:android:0a834bcdbd72f8b776044a",
+        "android_client_info": {
+          "package_name": "com.example.utsw5_1123150032"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtjfrwuu2P_tJ4sw8Mr23j0Br8jvnQhF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
