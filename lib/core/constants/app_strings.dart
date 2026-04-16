@@ -1,5 +1,5 @@
 class AppStrings {
-  static const String appName = 'Catalog Inkus';
+  static const String appName = 'Inkus Rentbike';
 
   // Auth
   static const String register = 'Daftar';
