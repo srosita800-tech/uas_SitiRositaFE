@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import '../constants/app_colors.dart';
 
 class GoogleSignInButton extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final bool isLoading;
 
   const GoogleSignInButton({
     super.key,
-    required this.onPressed,
+    this.onPressed,
     this.isLoading = false,
   });
 
@@ -15,38 +15,42 @@ class GoogleSignInButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 50,
-      child: ElevatedButton(
+      height: 52,
+      child: OutlinedButton(
         onPressed: isLoading ? null : onPressed,
-        style: ElevatedButton.styleFrom(
+        style: OutlinedButton.styleFrom(
           backgroundColor: Colors.white,
-          foregroundColor: AppColors.textPrimary,
-          elevation: 1,
+          side: BorderSide(color: Colors.grey.shade300),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
-            side: const BorderSide(color: AppColors.border),
           ),
         ),
         child: isLoading
             ? const SizedBox(
-                height: 24,
-                width: 24,
-                child: CircularProgressIndicator(
-                  color: AppColors.primary,
-                  strokeWidth: 2.5,
-                ),
+                width: 20,
+                height: 20,
+                child: CircularProgressIndicator(strokeWidth: 2),
               )
             : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Icon Google Bawaan Flutter
-                  const Icon(Icons.g_mobiledata, size: 32, color: Colors.red),
-                  const SizedBox(width: 8),
+                  // Gunakan Image.asset atau SvgPicture
+                  Image.network(
+                    'https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg',
+                    height: 22,
+                    errorBuilder: (_, __, ___) => const Icon(
+                      Icons.g_mobiledata,
+                      size: 24,
+                      color: AppColors.googleRed,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
                   const Text(
-                    'Masuk dengan Google',
+                    'Lanjutkan dengan Google',
                     style: TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black87,
                     ),
                   ),
                 ],
