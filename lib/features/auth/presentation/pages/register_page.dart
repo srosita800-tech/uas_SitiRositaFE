@@ -23,7 +23,13 @@ class RegisterPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: auth.isLoading ? null : () async {
+                // 1. Lakukan proses await
                 await context.read<AuthProvider>().register(_email.text, _pass.text, _name.text);
+                
+                // 2. TAMBAHKAN BARIS INI UNTUK KEAMANAN (Mencegah Error context)
+                if (!context.mounted) return;
+                
+                // 3. Baru gunakan context lagi untuk pindah halaman
                 if (context.read<AuthProvider>().status == AuthStatus.emailNotVerified) {
                   Navigator.pushReplacementNamed(context, '/verify');
                 }
