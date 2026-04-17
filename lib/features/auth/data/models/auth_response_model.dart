@@ -8,24 +8,19 @@ class UserModel {
   final String createdAt;
 
   const UserModel({
-    required this.id,
-    required this.firebaseUid,
-    required this.email,
-    required this.name,
-    required this.role,
-    required this.emailVerified,
-    required this.createdAt,
+    required this.id, required this.firebaseUid, required this.email,
+    required this.name, required this.role, required this.emailVerified, required this.createdAt,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-    id: json['id'] as int,
-    firebaseUid: json['firebase_uid'] as String,
-    email: json['email'] as String,
-    name: json['name'] as String,
-    role: json['role'] as String,
-    emailVerified: json['email_verified'] as bool,
-    createdAt: json['created_at'] as String,
-  );
+        id: json['id'] as int,
+        firebaseUid: json['firebase_uid'] as String,
+        email: json['email'] as String,
+        name: json['name'] as String,
+        role: json['role'] as String,
+        emailVerified: json['email_verified'] as bool,
+        createdAt: json['created_at'] as String,
+      );
 }
 
 class AuthResponseModel {
@@ -37,12 +32,8 @@ class AuthResponseModel {
   final UserModel user;
 
   const AuthResponseModel({
-    required this.success,
-    required this.message,
-    required this.accessToken,
-    required this.tokenType,
-    required this.expiresIn,
-    required this.user,
+    required this.success, required this.message, required this.accessToken,
+    required this.tokenType, required this.expiresIn, required this.user,
   });
 
   factory AuthResponseModel.fromJson(Map<String, dynamic> json) {
