@@ -1,5 +1,6 @@
 # 🚲 RentBike Premium — Flutter App
 ### UTS Mobile Lanjutan | NIM: 1123150032
+# Link Video : https://youtu.be/vBSV0F51ZQo
 
 **RentBike Premium** adalah aplikasi mobile berbasis Flutter untuk platform penyewaan sepeda. Aplikasi ini dirancang menggunakan **Clean Architecture** (Domain → Data → Presentation) untuk memisahkan logika bisnis dari tampilan antarmuka, serta menggunakan **Provider** untuk pengelolaan *state*. 
 
@@ -34,20 +35,47 @@ Proyek ini dipisahkan secara modular mengikuti konsep Clean Architecture agar ko
 
 ```text
 lib/
-├── main.dart             # Entry point & inisialisasi awal
-├── core/                 # Fondasi global aplikasi
-│   ├── constants/        # URL API, palet warna, dan teks statis
-│   ├── routes/           # Manajemen navigasi & proteksi halaman (Auth Guard)
-│   ├── services/         # Konfigurasi HTTP client dan Secure Storage
-│   └── widgets/          # Kumpulan UI komponen yang bisa dipakai ulang
+├── main.dart                          # Entry point aplikasi
+├── firebase_options.dart              # Konfigurasi Firebase (auto-generated)
 │
-└── features/             # Modul berbasis fitur
-    ├── auth/             # Layer autentikasi (login, register, verifikasi)
-    │   ├── data/         # Komunikasi ke API Golang & Firebase
-    │   ├── domain/       # Kontrak/Interface repository
-    │   └── presentation/ # UI dan State (Provider)
+├── core/                              # Fondasi & komponen global
+│   ├── constants/
+│   │   ├── app_colors.dart            # Konstanta warna aplikasi
+│   │   ├── app_strings.dart           # Label teks statis & pesan error
+│   │   └── api_constants.dart         # URL base & endpoint API
+│   ├── theme/
+│   │   └── app_theme.dart             # Konfigurasi Tema Material 3
+│   ├── services/
+│   │   ├── secure_storage.dart        # Enkripsi penyimpanan token JWT
+│   │   └── dio_client.dart            # HTTP client & interceptor log/auth
+│   ├── routes/
+│   │   ├── app_router.dart            # Manajemen rute halaman
+│   │   └── auth_guard.dart            # Middleware proteksi halaman
+│   └── widgets/                       # Widget reusable global
+│       ├── auth_header.dart           # Header halaman auth
+│       ├── custom_text_field.dart     # Input field kustom
+│       ├── custom_button.dart         # Tombol kustom (Primary/Outline/Text)
+│       ├── divider_with_text.dart     # Pemisah form dengan teks
+│       ├── google_sign_in_button.dart # Tombol integrasi Google
+│       └── loading_overlay.dart       # Indikator proses loading
+│
+└── features/                          # Fitur berbasis Clean Architecture
+    ├── auth/                          # Modul Autentikasi
+    │   ├── data/
+    │   │   ├── models/                # Model JSON response auth
+    │   │   └── repositories/          # Implementasi komunikasi API
+    │   ├── domain/
+    │   │   └── repositories/          # Kontrak/Interface repository auth
+    │   └── presentation/
+    │       ├── providers/             # Logic state management auth
+    │       └── pages/                 # UI Login, Register, & Verifikasi
     │
-    └── product/          # Layer dashboard dan katalog sepeda
-        ├── data/         # Fetch produk dari API
-        ├── domain/       # Kontrak/Interface
-        └── presentation/ # UI Dashboard
+    └── product/                       # Modul Katalog & Produk
+        ├── data/
+        │   ├── models/                # Model data produk
+        │   └── repositories/          # Implementasi fetch data produk
+        ├── domain/
+        │   └── repositories/          # Kontrak/Interface repository produk
+        └── presentation/
+            ├── providers/             # Logic state management produk
+            └── pages/                 # UI Dashboard & Katalog
