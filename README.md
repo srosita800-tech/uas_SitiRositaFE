@@ -1,8 +1,5 @@
 # 🚲 RentBike Premium — Flutter App
-### UTS Mobile Lanjutan | 
-#Nama: Indra Nurul Kusuma
-#NIM: 1123150032
-
+### UTS Mobile Lanjutan | Nama: Indra Nurul Kusuma | NIM: 1123150032
 # Link Video : https://youtu.be/vBSV0F51ZQo
 
 **RentBike Premium** adalah aplikasi mobile berbasis Flutter untuk platform penyewaan sepeda. Aplikasi ini dirancang menggunakan **Clean Architecture** (Domain → Data → Presentation) untuk memisahkan logika bisnis dari tampilan antarmuka, serta menggunakan **Provider** untuk pengelolaan *state*. 
