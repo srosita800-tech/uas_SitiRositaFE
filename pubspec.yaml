@@ -1,5 +1,5 @@
-name: utsw5_1123150032
-description: "A new Flutter project."
+name: uts_uas1125170150sitirosita
+description: "A premium BagStore application rebranded from Rentibike."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -44,6 +44,9 @@ dependencies:
   email_validator: ^3.0.0
   flutter_svg: ^2.2.4
   url_launcher: ^6.3.2
+  image_picker: ^1.1.2
+  image_cropper: ^8.0.2
+  flutter_local_notifications: ^18.0.1
 
 dev_dependencies:
   flutter_test:

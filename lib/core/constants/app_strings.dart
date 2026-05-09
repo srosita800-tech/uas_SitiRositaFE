@@ -1,7 +1,7 @@
 class AppStrings {
   // App Info
-  static const String appName = 'RentBike';
-static const String appTagline = 'Sewa Sepeda Jadi Lebih Mudah';
+  static const String appName = 'BagStore Premium';
+  static const String appTagline = 'Temukan Tas Impianmu di Sini';
   
   // Auth Titles
   static const String login = 'Masuk';
@@ -50,12 +50,12 @@ static const String appTagline = 'Sewa Sepeda Jadi Lebih Mudah';
   
   // Dashboard
   static const String dashboard = 'Dashboard';
-  static const String products = 'Produk';
+  static const String products = 'Tas';
   static const String categories = 'Kategori';
-  static const String searchHint = 'Cari produk...';
+  static const String searchHint = 'Cari tas...';
   static const String loading = 'Memuat...';
-  static const String emptyProduct = 'Tidak ada produk';
-  static const String errorLoadProduct = 'Gagal memuat produk';
+  static const String emptyProduct = 'Tidak ada tas';
+  static const String errorLoadProduct = 'Gagal memuat katalog tas';
   
   // Email Verification
   static const String verifyTitle = 'Verifikasi Email Kamu';

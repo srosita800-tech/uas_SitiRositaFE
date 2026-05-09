@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Primary Palette
-  static const Color primary = Color(0xFFFF5722);
-  static const Color primaryLight = Color(0xFF1E88E5);
-  static const Color primaryDark = Color(0xFF0D47A1);
-  static const Color accent = Color(0xFF42A5F5);
+  // Primary Palette (Premium Deep Navy & Gold)
+  static const Color primary = Color(0xFF1A237E); // Deep Navy
+  static const Color primaryLight = Color(0xFF534BAE);
+  static const Color primaryDark = Color(0xFF000051);
+  static const Color accent = Color(0xFFC5A059); // Gold/Bronze
   
   // Background & Surface
-  static const Color background = Color(0xFFF5F5F5);
+  static const Color background = Color(0xFFF8F9FA);
   static const Color surface = Colors.white;
   static const Color cardBackground = Colors.white;
   
@@ -25,9 +25,9 @@ class AppColors {
   static const Color info = Color(0xFF1976D2);
   
   // Utility
-  static const Color divider = Color(0xFFE0E0E0);
+  static const Color divider = Color(0xFFEEEEEE);
   static const Color border = Color(0xFFE0E0E0);
-  static const Color shadow = Color(0x1F000000);
+  static const Color shadow = Color(0x1A000000);
   
   // Google Brand Color
   static const Color googleRed = Color(0xFFDB4437);
@@ -35,16 +35,16 @@ class AppColors {
   // --- Dark Theme Palette ---
   
   // Background & Surface Dark
-  static const Color backgroundDark = Color(0xFF121212);
-  static const Color surfaceDark = Color(0xFF1E1E1E);
-  static const Color cardBackgroundDark = Color(0xFF1E1E1E);
+  static const Color backgroundDark = Color(0xFF0F172A);
+  static const Color surfaceDark = Color(0xFF1E293B);
+  static const Color cardBackgroundDark = Color(0xFF1E293B);
   
   // Text Colors Dark
-  static const Color textPrimaryDark = Color(0xFFE0E0E0);
-  static const Color textSecondaryDark = Color(0xFFAAAAAA);
-  static const Color textHintDark = Color(0xFF757575);
+  static const Color textPrimaryDark = Color(0xFFF8FAFC);
+  static const Color textSecondaryDark = Color(0xFF94A3B8);
+  static const Color textHintDark = Color(0xFF64748B);
   
   // Utility Dark
-  static const Color dividerDark = Color(0xFF333333);
-  static const Color borderDark = Color(0xFF333333);
+  static const Color dividerDark = Color(0xFF334155);
+  static const Color borderDark = Color(0xFF334155);
 }

@@ -1,3 +1,3 @@
 abstract class AuthRepository {
-  Future<String> verifyFirebaseToken(String firebaseToken);
+  Future<Map<String, dynamic>> verifyFirebaseToken(String firebaseToken);
 }

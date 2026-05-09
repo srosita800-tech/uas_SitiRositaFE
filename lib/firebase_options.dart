@@ -27,10 +27,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -44,37 +41,48 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyD6sYKjqzlizIZ9QTlmujv4Zq0ZTJjabCQ',
-    appId: '1:937491341183:web:83bcc22001bccccb76044a',
-    messagingSenderId: '937491341183',
-    projectId: 'rentbike-79e86',
-    authDomain: 'rentbike-79e86.firebaseapp.com',
-    storageBucket: 'rentbike-79e86.firebasestorage.app',
+    apiKey: 'AIzaSyDIDM2o8z119pS-HK_5Af1lWYPr75ZTUCY',
+    appId: '1:871890581556:web:c02012f2c7e2bc69e7f261',
+    messagingSenderId: '871890581556',
+    projectId: 'uts-uas1125170150sitirosita',
+    authDomain: 'uts-uas1125170150sitirosita.firebaseapp.com',
+    storageBucket: 'uts-uas1125170150sitirosita.firebasestorage.app',
+    measurementId: 'G-H0PD4TP3K4',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAtjfrwuu2P_tJ4sw8Mr23j0Br8jvnQhF0',
-    appId: '1:937491341183:android:0a834bcdbd72f8b776044a',
-    messagingSenderId: '937491341183',
-    projectId: 'rentbike-79e86',
-    storageBucket: 'rentbike-79e86.firebasestorage.app',
+    apiKey: 'AIzaSyD0qK9NZS2so4eVBciYH6CpMcss22g5824',
+    appId: '1:871890581556:android:3be606329bfdad71e7f261',
+    messagingSenderId: '871890581556',
+    projectId: 'uts-uas1125170150sitirosita',
+    storageBucket: 'uts-uas1125170150sitirosita.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDFCbrZP6W8YKCmzdahFMxL7uClIyGU_s0',
-    appId: '1:937491341183:ios:aec730eed65c6b0d76044a',
-    messagingSenderId: '937491341183',
-    projectId: 'rentbike-79e86',
-    storageBucket: 'rentbike-79e86.firebasestorage.app',
+    apiKey: 'AIzaSyDQKYoHlazBnoUSruI4iCgWOZxdoMmJhVk',
+    appId: '1:871890581556:ios:38283ab6b81e0bd4e7f261',
+    messagingSenderId: '871890581556',
+    projectId: 'uts-uas1125170150sitirosita',
+    storageBucket: 'uts-uas1125170150sitirosita.firebasestorage.app',
     iosBundleId: 'com.example.utsw51123150032',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDFCbrZP6W8YKCmzdahFMxL7uClIyGU_s0',
-    appId: '1:937491341183:ios:aec730eed65c6b0d76044a',
-    messagingSenderId: '937491341183',
-    projectId: 'rentbike-79e86',
-    storageBucket: 'rentbike-79e86.firebasestorage.app',
+    apiKey: 'AIzaSyDQKYoHlazBnoUSruI4iCgWOZxdoMmJhVk',
+    appId: '1:871890581556:ios:38283ab6b81e0bd4e7f261',
+    messagingSenderId: '871890581556',
+    projectId: 'uts-uas1125170150sitirosita',
+    storageBucket: 'uts-uas1125170150sitirosita.firebasestorage.app',
     iosBundleId: 'com.example.utsw51123150032',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyDIDM2o8z119pS-HK_5Af1lWYPr75ZTUCY',
+    appId: '1:871890581556:web:f26fc0210c86094ee7f261',
+    messagingSenderId: '871890581556',
+    projectId: 'uts-uas1125170150sitirosita',
+    authDomain: 'uts-uas1125170150sitirosita.firebaseapp.com',
+    storageBucket: 'uts-uas1125170150sitirosita.firebasestorage.app',
+    measurementId: 'G-QQQMHNT3QW',
   );
 }

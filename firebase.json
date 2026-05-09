@@ -1,1 +1,54 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"rentbike-79e86","appId":"1:937491341183:android:0a834bcdbd72f8b776044a","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"rentbike-79e86","configurations":{"android":"1:937491341183:android:0a834bcdbd72f8b776044a","ios":"1:937491341183:ios:aec730eed65c6b0d76044a","macos":"1:937491341183:ios:aec730eed65c6b0d76044a","web":"1:937491341183:web:83bcc22001bccccb76044a"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "uts-uas1125170150sitirosita",
+          "appId": "1:871890581556:android:3be606329bfdad71e7f261",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "uts-uas1125170150sitirosita",
+          "configurations": {
+            "android": "1:871890581556:android:3be606329bfdad71e7f261",
+            "ios": "1:871890581556:ios:38283ab6b81e0bd4e7f261",
+            "macos": "1:871890581556:ios:38283ab6b81e0bd4e7f261",
+            "web": "1:871890581556:web:c02012f2c7e2bc69e7f261",
+            "windows": "1:871890581556:web:f26fc0210c86094ee7f261"
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "database": "(default)",
+    "location": "asia-east1",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "auth": {
+    "providers": {
+      "emailPassword": true,
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "My App",
+        "supportEmail": "support@undefined.firebaseapp.com"
+      }
+    }
+  }
+}

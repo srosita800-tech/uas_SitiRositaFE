@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
+import '../../../../core/router/app_router.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({super.key});
@@ -17,7 +18,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     _authProvider = context.read<AuthProvider>();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _authProvider.startVerificationCheck(() {
-        if (mounted) Navigator.pushReplacementNamed(context, '/dashboard');
+        if (mounted) Navigator.pushReplacementNamed(context, AppRouter.dashboard);
       });
     });
   }
@@ -44,7 +45,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
             TextButton(
               onPressed: () {
                 context.read<AuthProvider>().logout();
-                Navigator.pushReplacementNamed(context, '/login');
+                Navigator.pushReplacementNamed(context, AppRouter.login);
               },
               child: const Text('Batal'),
             )

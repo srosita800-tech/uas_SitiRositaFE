@@ -14,14 +14,34 @@ class AuthProvider extends ChangeNotifier {
   AuthStatus _status = AuthStatus.initial;
   String? errorMessage;
   Timer? _timer;
+  Map<String, dynamic>? _userData;
 
   AuthStatus get status => _status;
   bool get isLoading => _status == AuthStatus.loading;
 
   // Mendapatkan data user saat ini
   User? get currentUser => _auth.currentUser;
+  User? get firebaseUser => currentUser;
+  
+  // Sekarang userModel mengembalikan data dari backend yang berbentuk Map
+  Map<String, dynamic>? get userModel => _userData?['user'];
+  bool get isAdmin => userModel?['role'] == 'admin';
 
-  Future<void> register(String email, String password, String name) async {
+  Future<void> initializeAuth() async {
+    final user = _auth.currentUser;
+    if (user != null) {
+      if (user.emailVerified) {
+        await _verifyBackend();
+      } else {
+        _status = AuthStatus.emailNotVerified;
+      }
+    } else {
+      _status = AuthStatus.unauthenticated;
+    }
+    notifyListeners();
+  }
+
+  Future<bool> register({required String email, required String password, required String name}) async {
     _status = AuthStatus.loading;
     errorMessage = null;
     notifyListeners();
@@ -35,6 +55,8 @@ class AuthProvider extends ChangeNotifier {
       await cred.user?.sendEmailVerification();
       
       _status = AuthStatus.emailNotVerified;
+      notifyListeners();
+      return true;
     } on FirebaseAuthException catch (e) {
       errorMessage = _mapFirebaseError(e.code);
       _status = AuthStatus.error;
@@ -43,9 +65,10 @@ class AuthProvider extends ChangeNotifier {
       _status = AuthStatus.error;
     }
     notifyListeners();
+    return false;
   }
 
-  Future<void> login(String email, String password) async {
+  Future<bool> login({required String email, required String password}) async {
     _status = AuthStatus.loading;
     errorMessage = null;
     notifyListeners();
@@ -56,18 +79,22 @@ class AuthProvider extends ChangeNotifier {
         // Cek apakah email sudah diverifikasi
         if (cred.user!.emailVerified) {
           await _verifyBackend();
+          return _status == AuthStatus.authenticated;
         } else {
           _status = AuthStatus.emailNotVerified;
+          notifyListeners();
+          return true; // Login success but email not verified
         }
       }
     } on FirebaseAuthException catch (e) {
       errorMessage = _mapFirebaseError(e.code);
       _status = AuthStatus.error;
     } catch (e) {
-      errorMessage = "Gagal masuk ke akun RentBike Anda";
+      errorMessage = "Gagal masuk ke akun Anda";
       _status = AuthStatus.error;
     }
     notifyListeners();
+    return false;
   }
 
   // Inti koneksi ke Backend Golang
@@ -78,11 +105,13 @@ class AuthProvider extends ChangeNotifier {
       
       if (fbToken != null) {
         // 1. Kirim Firebase Token ke Backend Golang Anda
-        // 2. Repository akan mengembalikan JWT buatan backend Anda
-        final backendJwt = await _repository.verifyFirebaseToken(fbToken);
+        final response = await _repository.verifyFirebaseToken(fbToken);
+        
+        // Simpan data user dari backend
+        _userData = response;
         
         // Simpan JWT Backend ke Secure Storage untuk digunakan Dio Interceptor
-        await SecureStorageService.saveToken(backendJwt);
+        await SecureStorageService.saveToken(response['access_token']);
         
         _status = AuthStatus.authenticated;
       } else {

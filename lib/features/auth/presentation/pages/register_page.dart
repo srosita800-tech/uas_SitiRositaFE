@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_strings.dart';
+import '../../../../core/router/app_router.dart';
 
 class RegisterPage extends StatelessWidget {
   RegisterPage({super.key});
@@ -12,12 +15,12 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final auth = context.watch<AuthProvider>();
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: const Text('Daftar Akun Baru', style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 18)),
+        title: const Text('Daftar Akun Baru', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold, fontSize: 18)),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black87),
+        iconTheme: const IconThemeData(color: AppColors.textPrimary),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -25,16 +28,16 @@ class RegisterPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-               Icon(Icons.directions_bike_rounded, size: 50, color: Colors.blue[900]),
+               Icon(Icons.shopping_bag_rounded, size: 50, color: AppColors.primary),
               const SizedBox(height: 24),
               const Text(
                 'Bergabung Bersama Kami',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: Colors.black87),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: AppColors.textPrimary),
               ),
               const SizedBox(height: 8),
               Text(
-                'Lengkapi data untuk membuat akun kendaranmu',
-                style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                'Lengkapi data untuk membuat akun belanjamu',
+                style: TextStyle(fontSize: 14, color: AppColors.textSecondary),
               ),
               const SizedBox(height: 30),
               
@@ -45,7 +48,7 @@ class RegisterPage extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(24),
                   boxShadow: [
-                    BoxShadow(color: Colors.grey.withOpacity(0.08), blurRadius: 20, spreadRadius: 5, offset: const Offset(0, 10))
+                    BoxShadow(color: Colors.grey.withValues(alpha: 0.08), blurRadius: 20, spreadRadius: 5, offset: const Offset(0, 10))
                   ]
                 ),
                 child: Column(
@@ -53,20 +56,20 @@ class RegisterPage extends StatelessWidget {
                     TextField(
                       controller: _name,
                       decoration: InputDecoration(
-                        labelText: 'Nama Lengkap',
-                        prefixIcon: Icon(Icons.person_outline, color: Colors.blue[800]),
+                        labelText: AppStrings.fullName,
+                        prefixIcon: Icon(Icons.person_outline, color: AppColors.primary),
                         enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide(color: Colors.grey.shade200)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide(color: Colors.blue.shade900, width: 2)),
+                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide(color: AppColors.primary, width: 2)),
                       )
                     ),
                     const SizedBox(height: 20),
                     TextField(
                       controller: _email,
                       decoration: InputDecoration(
-                        labelText: 'Email',
-                        prefixIcon: Icon(Icons.email_outlined, color: Colors.blue[800]),
+                        labelText: AppStrings.email,
+                        prefixIcon: Icon(Icons.email_outlined, color: AppColors.primary),
                         enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide(color: Colors.grey.shade200)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide(color: Colors.blue.shade900, width: 2)),
+                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide(color: AppColors.primary, width: 2)),
                       )
                     ),
                     const SizedBox(height: 20),
@@ -74,29 +77,51 @@ class RegisterPage extends StatelessWidget {
                       controller: _pass,
                       obscureText: true,
                       decoration: InputDecoration(
-                        labelText: 'Password',
-                        prefixIcon: Icon(Icons.lock_outline, color: Colors.blue[800]),
+                        labelText: AppStrings.password,
+                        prefixIcon: Icon(Icons.lock_outline, color: AppColors.primary),
                         enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide(color: Colors.grey.shade200)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide(color: Colors.blue.shade900, width: 2)),
+                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide(color: AppColors.primary, width: 2)),
                       )
                     ),
                     const SizedBox(height: 30),
+                    if (auth.errorMessage != null)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: Text(
+                          auth.errorMessage!,
+                          style: const TextStyle(color: Colors.red, fontSize: 13),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     SizedBox(
                       width: double.infinity,
                       height: 52,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue[900],
+                          backgroundColor: AppColors.primary,
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                           elevation: 0,
                         ),
                         onPressed: auth.isLoading ? null : () async {
-                          await context.read<AuthProvider>().register(_email.text, _pass.text, _name.text);
+                          final success = await context.read<AuthProvider>().register(
+                            email: _email.text.trim(), 
+                            password: _pass.text, 
+                            name: _name.text,
+                          );
                           if (!context.mounted) return;
                           
+                          if (!success && auth.errorMessage != null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(auth.errorMessage!),
+                                backgroundColor: Colors.red,
+                              ),
+                            );
+                          }
+                          
                           if (context.read<AuthProvider>().status == AuthStatus.emailNotVerified) {
-                            Navigator.pushReplacementNamed(context, '/verify');
+                            Navigator.pushReplacementNamed(context, AppRouter.verifyEmail);
                           }
                         },
                         child: auth.isLoading 
@@ -110,13 +135,13 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(height: 24),
               // Tombol Login
               TextButton(
-                onPressed: () => Navigator.pushReplacementNamed(context, '/login'), 
+                onPressed: () => Navigator.pushReplacementNamed(context, AppRouter.login), 
                 child: RichText(
                   text: TextSpan(
                     text: 'Sudah punya akun? ',
-                    style: TextStyle(color: Colors.grey[600]),
+                    style: TextStyle(color: AppColors.textSecondary),
                     children: [
-                      TextSpan(text: 'Masuk', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue[900]))
+                      TextSpan(text: 'Masuk', style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.primary))
                     ]
                   ),
                 )
@@ -127,4 +152,4 @@ class RegisterPage extends StatelessWidget {
       ),
     );
   }
-}
+}
