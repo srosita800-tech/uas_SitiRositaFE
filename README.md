@@ -1,5 +1,5 @@
 # 👜 BagStore Premium — Flutter App
-### UTS Mobile Lanjutan | Nama: Indra Nurul Kusuma | NIM: 1123150032
+### UTS Mobile Lanjutan | Nama: Siti Rosita | NIM: 1125170150
 
 **BagStore Premium** adalah aplikasi mobile berbasis Flutter untuk platform penjualan tas premium. Aplikasi ini dirancang menggunakan **Clean Architecture** (Domain → Data → Presentation) untuk memisahkan logika bisnis dari tampilan antarmuka, serta menggunakan **Provider** untuk pengelolaan *state*. 
 
