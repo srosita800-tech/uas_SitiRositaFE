@@ -29,13 +29,17 @@ class AuthProvider extends ChangeNotifier {
 
   Future<void> initializeAuth() async {
     final user = _auth.currentUser;
+    debugPrint("[AUTH] Initializing Auth. Firebase User: ${user?.email}");
+    
     if (user != null) {
       if (user.emailVerified) {
         await _verifyBackend();
       } else {
+        debugPrint("[AUTH] User email not verified");
         _status = AuthStatus.emailNotVerified;
       }
     } else {
+      debugPrint("[AUTH] No Firebase user found");
       _status = AuthStatus.unauthenticated;
     }
     notifyListeners();

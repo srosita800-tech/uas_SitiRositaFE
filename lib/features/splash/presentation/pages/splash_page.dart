@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../../core/router/app_router.dart';
-import '../../../../core/services/secure_storage.dart';
-import '../../../../core/constants/app_colors.dart'; // Import warna
-import '../../../../core/constants/app_strings.dart'; // Import teks
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_strings.dart';
+import '../../../auth/presentation/providers/auth_provider.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -19,18 +20,24 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   Future<void> _checkAuth() async {
-    // Memberikan waktu splash screen tampil (2 detik)
-    await Future.delayed(const Duration(seconds: 2));
+    // Memberikan waktu splash screen tampil (minimal 2 detik)
+    final splashFuture = Future.delayed(const Duration(seconds: 2));
+    
+    // Inisialisasi auth state (cek Firebase + Backend sync)
+    final authProvider = context.read<AuthProvider>();
+    final authFuture = authProvider.initializeAuth();
+    
+    // Tunggu keduanya selesai
+    await Future.wait([splashFuture, authFuture]);
     
     if (!mounted) return;
     
-    // Cek token di storage
-    final token = await SecureStorageService.getToken();
+    final status = authProvider.status;
     
-    if (!mounted) return;
-
-    if (token != null) {
+    if (status == AuthStatus.authenticated) {
       Navigator.pushReplacementNamed(context, AppRouter.dashboard);
+    } else if (status == AuthStatus.emailNotVerified) {
+      Navigator.pushReplacementNamed(context, AppRouter.verifyEmail);
     } else {
       Navigator.pushReplacementNamed(context, AppRouter.login);
     }
