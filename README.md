@@ -79,3 +79,27 @@ lib/
             ├── providers/             # Logic state management produk
             └── pages/                 # UI Dashboard & Katalog
 ```
+
+---
+
+## 📸 Screenshot Antarmuka
+
+Berikut adalah tampilan antarmuka aplikasi **BagStore Premium** yang mencakup seluruh alur utama:
+
+### 🔐 Alur Autentikasi & Registrasi
+| Halaman Login | Pendaftaran Akun |
+|:---:|:---:|
+| ![Login](assets/UI/Halaman_Login.png) | ![Register](assets/UI/Pendaftaran_Akun.png) |
+
+### 📧 Alur Verifikasi Email
+| Registrasi Berhasil | Notifikasi / Inbox Email |
+|:---:|:---:|
+| ![Registrasi Email](assets/UI/Registrasi_Email.png) | ![Notifikasi Email](assets/UI/Notifikasi_Email.png) |
+
+### 🛍️ Katalog Produk & Checkout
+| Dashboard Katalog Tas | Proses Checkout | Konfirmasi Pesanan |
+|:---:|:---:|:---:|
+| ![Dashboard](assets/UI/Halaman_Produk_Tas.png) | ![Checkout](assets/UI/Checkout_Produk.png) | ![Konfirmasi](assets/UI/Konfirmasi_Pesanan.png) |
+
+---
+*Dokumentasi ini dibuat untuk memenuhi tugas UTS Mobile Lanjutan.*
