@@ -4,7 +4,7 @@ class ApiConstants {
   // Untuk iOS Simulator: localhost
   // Untuk Device: IP Local network (Cek IP Laptop Anda!)
   // Backend port di .env adalah 8081
-  static const String baseUrl = 'http://172.20.10.6:8081/v1';
+  static const String baseUrl = 'http://192.168.1.35:8081/v1';
 
   // Auth Endpoints (sesuai kontrak backend Go)
   static const String verifyToken = '/auth/verify-token';
