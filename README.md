@@ -102,4 +102,4 @@ Berikut adalah tampilan antarmuka aplikasi **BagStore Premium** yang mencakup se
 | ![Dashboard](assets/UI/Halaman_Produk_Tas.png) | ![Checkout](assets/UI/Checkout_Produk.png) | ![Konfirmasi](assets/UI/Konfirmasi_Pesanan.png) |
 
 ---
-*Dokumentasi ini dibuat untuk memenuhi tugas UTS Mobile Lanjutan.*
+*Dokumentasi ini dibuat untuk memenuhi tugas UAS Mobile Lanjutan.*
